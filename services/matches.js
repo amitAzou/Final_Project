@@ -16,34 +16,38 @@ const getRawMatchesList = async () => {
 const getMatchesList = async () => {
   const raw_list = await getRawMatchesList()
   const liveMatchesList = raw_list.data.liveMatches
-  const chosenLiveMatches = [
-    liveMatchesList.L1,
-    liveMatchesList.FR1,
-    liveMatchesList.ES1,
-    liveMatchesList.NL1,
-    liveMatchesList.GB2,
-    liveMatchesList.IT2,
-  ]
-  const updatedChosenLiveMatches = []
-  for (let i = 0; i < chosenLiveMatches.length; i++) {
-    if (chosenLiveMatches[i]) {
-      updatedChosenLiveMatches.push(chosenLiveMatches[i])
-    }
-  }
-  return updatedChosenLiveMatches.map((match) => {
-    if (match) {
-      return {
-        competitionName: match[0].competitionName,
-        competitionImage: match[0].competitionImage,
-        fullMatchDate: match[0].fullMatchDate,
-        matchTime: match[0].matchTime,
-        homeClubName: match[0].homeClubName,
-        homeClubImage: match[0].homeClubImage,
-        awayClubName: match[0].awayClubName,
-        awayClubImage: match[0].awayClubImage,
+  if (liveMatchesList) {
+    const chosenLiveMatches = [
+      liveMatchesList.L1,
+      liveMatchesList.FR1,
+      liveMatchesList.ES1,
+      liveMatchesList.NL1,
+      liveMatchesList.GB2,
+      liveMatchesList.IT2,
+    ]
+    const updatedChosenLiveMatches = []
+    for (let i = 0; i < chosenLiveMatches.length; i++) {
+      if (chosenLiveMatches[i]) {
+        updatedChosenLiveMatches.push(chosenLiveMatches[i])
       }
     }
-  })
+    return updatedChosenLiveMatches.map((match) => {
+      if (match) {
+        return {
+          competitionName: match[0].competitionName,
+          competitionImage: match[0].competitionImage,
+          fullMatchDate: match[0].fullMatchDate,
+          matchTime: match[0].matchTime,
+          homeClubName: match[0].homeClubName,
+          homeClubImage: match[0].homeClubImage,
+          awayClubName: match[0].awayClubName,
+          awayClubImage: match[0].awayClubImage,
+        }
+      }
+    })
+  } else {
+    return []
+  }
 }
 
 module.exports = {getMatchesList}
