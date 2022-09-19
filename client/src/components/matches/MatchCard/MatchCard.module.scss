@@ -1,0 +1,37 @@
+.card_cont {
+  margin: 40px 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: transform 0.5s ease;
+  height: 600px;
+  width: 350px;
+  cursor: pointer;
+  text-overflow: ellipsis;
+  background-color: #1e1e1e;
+
+  .image {
+    height: 150px;
+    width: 100px;
+  }
+
+  .text {
+    color: white
+  }
+
+
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+
+
+
+
